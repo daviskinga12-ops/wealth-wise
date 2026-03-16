@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lifestyle Rich or Actually Rich? — WealthWise</title>
+<meta name="description" content="7 honest questions. One brutally accurate verdict. Find out if your money is working for you — or just working hard to impress people.">
+<meta property="og:title" content="Lifestyle Rich or Actually Rich? — WealthWise">
+<meta property="og:description" content="7 honest questions. One brutally accurate verdict. Are you building wealth or just looking like it?">
+<meta property="og:type" content="website">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #ffffff; --bg2: #f7f7f5; --bg3: #efede7;
+    --text: #1a1a18; --text2: #6b6b67; --text3: #9b9b96;
+    --border: rgba(0,0,0,0.1); --border2: rgba(0,0,0,0.2);
+    --green: #1D9E75; --green-bg: #E1F5EE; --green-text: #085041;
+    --amber-bg: #FAEEDA; --amber-text: #633806;
+    --coral-bg: #FAECE7; --coral-text: #712B13;
+    --red-bg: #FCEBEB; --red-text: #791F1F;
+    --lime-bg: #EAF3DE; --lime-text: #27500A;
+    --r: 12px; --rs: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a18; --bg2: #242422; --bg3: #2c2c29;
+      --text: #f0efe9; --text2: #a0a09a; --text3: #6b6b67;
+      --border: rgba(255,255,255,0.1); --border2: rgba(255,255,255,0.2);
+    }
+  }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg3); color: var(--text); min-height: 100vh; display: flex; align-items: flex-start; justify-content: center; padding: 2rem 1rem 4rem; }
+  .card { background: var(--bg); border-radius: var(--r); border: 0.5px solid var(--border); padding: 2rem; width: 100%; max-width: 520px; }
+  .screen { display: none; } .screen.active { display: block; }
+  .brand { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--green); margin-bottom: 1.5rem; }
+  .hero-title { font-size: 28px; font-weight: 700; line-height: 1.2; margin-bottom: .75rem; }
+  .hero-sub { font-size: 15px; color: var(--text2); line-height: 1.65; margin-bottom: 2rem; }
+  .divider { height: 0.5px; background: var(--border); margin: 1.5rem 0; }
+  .trust-row { display: flex; gap: 1.5rem; margin-bottom: 2rem; }
+  .trust-item { font-size: 12px; color: var(--text3); }
+  .trust-item span { display: block; font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+  .btn-primary { width: 100%; padding: 15px; font-size: 15px; font-weight: 700; border-radius: var(--rs); border: none; background: var(--text); color: var(--bg); cursor: pointer; transition: opacity .15s; font-family: inherit; }
+  .btn-primary:hover { opacity: .85; }
+  .progress-wrap { margin-bottom: 2rem; }
+  .progress-top { display: flex; justify-content: space-between; font-size: 12px; color: var(--text3); margin-bottom: 8px; }
+  .progress-track { height: 3px; background: var(--border); border-radius: 99px; overflow: hidden; }
+  .progress-fill { height: 3px; background: var(--green); border-radius: 99px; transition: width .4s ease; }
+  .q-label { font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--green); margin-bottom: .5rem; }
+  .q-text { font-size: 20px; font-weight: 700; line-height: 1.3; margin-bottom: .5rem; }
+  .q-sub { font-size: 13px; color: var(--text2); margin-bottom: 1.5rem; }
+  .options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.5rem; }
+  .opt { padding: 13px 16px; border: 0.5px solid var(--border2); border-radius: var(--rs); font-size: 14px; color: var(--text2); cursor: pointer; text-align: left; background: none; transition: background .12s, border-color .12s, color .12s; font-family: inherit; }
+  .opt:hover { background: var(--bg2); color: var(--text); }
+  .opt.selected { border-color: var(--green); background: var(--green-bg); color: var(--green-text); font-weight: 600; }
+  .nav-row { display: flex; justify-content: space-between; align-items: center; }
+  .btn-back { font-size: 13px; color: var(--text3); background: none; border: none; cursor: pointer; font-family: inherit; padding: 4px 0; }
+  .btn-next { padding: 11px 24px; font-size: 14px; font-weight: 700; border-radius: var(--rs); border: none; background: var(--text); color: var(--bg); cursor: pointer; opacity: .3; transition: opacity .15s; font-family: inherit; }
+  .btn-next.ready { opacity: 1; }
+  .verdict-badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; padding: 5px 14px; border-radius: 99px; margin-bottom: 1rem; }
+  .verdict-title { font-size: 26px; font-weight: 700; line-height: 1.2; margin-bottom: 1.25rem; }
+  .score-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+  .score-card { background: var(--bg2); border-radius: var(--rs); padding: 14px 12px; text-align: center; }
+  .score-num { font-size: 22px; font-weight: 700; color: var(--text); }
+  .score-lbl { font-size: 11px; color: var(--text3); margin-top: 4px; }
+  .verdict-body { font-size: 15px; color: var(--text2); line-height: 1.75; margin-bottom: 1.5rem; }
+  .verdict-body p { margin-bottom: .75rem; }
+  .fixes-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text3); margin-bottom: 12px; }
+  .fix-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 0.5px solid var(--border); font-size: 14px; color: var(--text2); line-height: 1.55; }
+  .fix-item:last-child { border-bottom: none; }
+  .fix-num { font-size: 11px; font-weight: 700; color: var(--green); min-width: 18px; padding-top: 2px; }
+  .share-row { display: flex; gap: 8px; margin-top: 1.75rem; }
+  .btn-copy { flex: 1; padding: 12px; font-size: 14px; border-radius: var(--rs); border: 0.5px solid var(--border2); background: none; cursor: pointer; color: var(--text2); transition: background .12s; font-family: inherit; }
+  .btn-copy:hover { background: var(--bg2); color: var(--text); }
+  .btn-retry { flex: 1; padding: 12px; font-size: 14px; font-weight: 700; border-radius: var(--rs); border: none; background: var(--text); color: var(--bg); cursor: pointer; font-family: inherit; }
+  .footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 1.5rem; }
+  .footer a { color: var(--green); text-decoration: none; font-weight: 700; }
+  @media (max-width: 480px) { body { padding: 1rem .75rem 3rem; } .card { padding: 1.5rem; } .hero-title { font-size: 24px; } .q-text { font-size: 18px; } }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <div class="screen active" id="s-intro">
+    <div class="brand">WealthWise</div>
+    <div class="hero-title">Lifestyle rich or actually rich?</div>
+    <div class="hero-sub">7 honest questions. One brutally accurate verdict. Find out if your money is working for you — or just working hard to impress people.</div>
+    <div class="divider"></div>
+    <div class="trust-row">
+      <div class="trust-item"><span>7</span>Questions</div>
+      <div class="trust-item"><span>2 min</span>To complete</div>
+      <div class="trust-item"><span>100%</span>Honest verdict</div>
+    </div>
+    <button class="btn-primary" onclick="startQuiz()">Find out now</button>
+    <div class="footer" style="margin-top:1.25rem">By <a href="https://youtube.com/@wealthwisefinancestate" target="_blank">WealthWise</a></div>
+  </div>
+
+  <div class="screen" id="s-quiz">
+    <div class="progress-wrap">
+      <div class="progress-top"><span id="q-counter">Question 1 of 7</span><span id="q-pct">0%</span></div>
+      <div class="progress-track"><div class="progress-fill" id="prog" style="width:0%"></div></div>
+    </div>
+    <div class="q-label" id="q-label"></div>
+    <div class="q-text" id="q-text"></div>
+    <div class="q-sub" id="q-sub"></div>
+    <div class="options" id="options"></div>
+    <div class="nav-row">
+      <button class="btn-back" onclick="prevQ()">Back</button>
+      <button class="btn-next" id="next-btn" onclick="nextQ()">Continue</button>
+    </div>
+  </div>
+
+  <div class="screen" id="s-result">
+    <div class="brand">WealthWise — your verdict</div>
+    <div id="verdict-badge-wrap"></div>
+    <div class="verdict-title" id="verdict-title"></div>
+    <div class="score-row" id="score-row"></div>
+    <div class="verdict-body" id="verdict-body"></div>
+    <div class="fixes-title">3 moves to change the trajectory</div>
+    <div id="fixes-list"></div>
+    <div class="share-row">
+      <button class="btn-copy" id="copy-btn" onclick="copyResult()">Copy & share result</button>
+      <button class="btn-retry" onclick="restart()">Retake quiz</button>
+    </div>
+    <div class="footer">Powered by <a href="https://youtube.com/@wealthwisefinancestate" target="_blank">WealthWise</a> — follow for more financial truth</div>
+  </div>
+
+</div>
+<script>
+const Q = [
+  { label:"Income", text:"What's your monthly income after tax?", sub:"All sources combined — salary, business, side hustles.", opts:["Under $500","$500–$1,500","$1,500–$3,500","$3,500–$7,000","Over $7,000"], key:"income", scores:[0,1,2,3,4] },
+  { label:"Housing", text:"What share of income goes to rent or mortgage?", sub:"The golden rule says no more than 30%.", opts:["Under 20%","20–30%","30–40%","40–50%","More than 50%"], key:"housing", scores:[4,3,2,1,0] },
+  { label:"Savings", text:"How much of your income do you save or invest monthly?", sub:"Savings account, stocks, pension, crypto — anything.", opts:["Nothing — it's tight","Less than 5%","5–15%","15–30%","Over 30%"], key:"savings", scores:[0,1,2,3,4] },
+  { label:"Debt", text:"How would you describe your debt situation?", sub:"Loans, credit cards, buy-now-pay-later — all of it.", opts:["Debt-free","Small manageable debt","A few loans I'm handling","High debt, minimum payments","Drowning — it keeps growing"], key:"debt", scores:[4,3,2,1,0] },
+  { label:"Lifestyle spending", text:"How often do you spend to impress others?", sub:"Outfits, restaurants, gadgets, trips — be honest.", opts:["Rarely — I spend intentionally","Occasionally — maybe once a month","Fairly often — social pressure is real","Very often — appearances matter to me","This is basically my whole budget"], key:"lifestyle", scores:[4,3,2,1,0] },
+  { label:"Investments", text:"Do you have money growing without you actively working?", sub:"Stocks, index funds, rental income, a business — anything.", opts:["No investments at all","Started but very small","Yes, something meaningful","Yes, multiple streams","My money works harder than I do"], key:"investments", scores:[0,1,2,3,4] },
+  { label:"Financial clarity", text:"Do you know exactly where your money goes each month?", sub:"A budget, spreadsheet, or app — anything counts.", opts:["Not at all — it just disappears","Vaguely — rough idea","Mostly — I track the big stuff","Yes — I budget regularly","Yes — I review and optimise monthly"], key:"clarity", scores:[0,1,2,3,4] }
+];
+
+const VERDICTS = [
+  {
+    min:24, verdict:"Actually Rich", color:{bg:"#E1F5EE",c:"#085041"},
+    headlines:["Your money is quietly building an empire","You're playing the long game — and winning","Most people wish they had your financial discipline"],
+    roasts:[
+      "You've figured out what most people spend a lifetime learning — that real wealth is invisible. No flashy proof, just compounding accounts and a clear head. You're not just saving money, you're buying future freedom. Keep this up and you won't need to work for money much longer.",
+      "While others are financing the lifestyle, you're funding the future. Your spending is intentional, your savings are real, and your investments are doing the heavy lifting. Honestly? This is rare. Don't let lifestyle creep steal what you've built."
+    ],
+    fixes:["Increase your investment allocation by 5% — you're ready for it","Explore tax-advantaged accounts to protect your returns","Start building a second income stream to accelerate your timeline"]
+  },
+  {
+    min:17, verdict:"Building Wealth", color:{bg:"#EAF3DE",c:"#27500A"},
+    headlines:["The foundation is solid — now build higher","You're on the right track, just needs more speed","Good habits, but there's a gear you haven't hit yet"],
+    roasts:[
+      "You're doing more right than wrong — and that puts you ahead of most people. Your savings exist, your debt isn't spiraling, and you have some awareness of where your money goes. The gap between where you are and 'Actually Rich' isn't skill — it's consistency and a few strategic upgrades.",
+      "You've got the right instincts. The problem isn't discipline — it's optimization. You're leaving money on the table somewhere, whether that's undersaving, underinvesting, or not tracking closely enough. Tighten those gaps and you'll move up fast."
+    ],
+    fixes:["Set up automatic transfers to savings the day you get paid — remove the decision","Open an investment account if you haven't — even $50/month compounds significantly","Track every expense for 30 days — you'll find a leak you didn't know existed"]
+  },
+  {
+    min:11, verdict:"Lifestyle Trap", color:{bg:"#FAEEDA",c:"#633806"},
+    headlines:["Looking good on the outside, leaking on the inside","The lifestyle is costing you the future","Your image is running your finances — not you"],
+    roasts:[
+      "Let's be honest — a noticeable chunk of your money is going to maintaining appearances. The dinners, the fits, the upgrades that weren't strictly necessary. None of it is building anything. The most dangerous trap isn't debt — it's looking successful while quietly falling behind. You can course correct, but it starts with admitting the lifestyle is in charge.",
+      "You know that feeling when you check your account and wonder where it all went? That's the lifestyle tax. It's not one big bad decision — it's a hundred small ones that seemed fine at the time. The good news: awareness is step one, and you just completed it."
+    ],
+    fixes:["Identify your top 3 'image' expenses and cut one this month — just one","Create a 24-hour rule: wait a day before any non-essential purchase over $50","Redirect what you save into an investment account — make it automatic so it's not a choice"]
+  },
+  {
+    min:5, verdict:"Financial Illusion", color:{bg:"#FAECE7",c:"#712B13"},
+    headlines:["The numbers don't match the narrative","Spending like it's yours when it isn't","The lifestyle is borrowed — the debt is real"],
+    roasts:[
+      "The gap between how your finances look and how they actually are is wide right now. High costs, low savings, debt that isn't shrinking — and somewhere in the mix, spending that's about the image more than the need. This isn't about blame. It's about recognizing that the current path leads somewhere uncomfortable. The turnaround is 100% possible — but it requires a hard reset, not small tweaks.",
+      "Here's the thing about financial illusions — they're expensive to maintain and they compound in the wrong direction. Every month the gap grows a little wider. But you took this quiz, which means some part of you already knows. That awareness is genuinely the hardest part. Now act on it."
+    ],
+    fixes:["List every debt smallest to largest and attack the smallest one first — a quick win changes your psychology","Cut your three biggest non-essential expenses immediately — not eventually, this month","Tell one trusted person your real financial situation — accountability changes behavior faster than anything"]
+  },
+  {
+    min:0, verdict:"Wealth Emergency", color:{bg:"#FCEBEB",c:"#791F1F"},
+    headlines:["This needs urgent attention — not tomorrow","The financial house is on fire","Real talk: something has to change now"],
+    roasts:[
+      "This is the verdict nobody wants — but the one that matters most to hear. Income is stretched, debt is a weight, savings are absent, and the money picture is genuinely unclear. This isn't a lifestyle problem or a discipline problem — it's a structural emergency that needs a structural response. The path out exists, but it starts with radical honesty and one non-negotiable change this week.",
+      "The worst thing about a financial emergency is that it feels normal after a while. The stress becomes background noise. But normal doesn't mean fine — and the sooner you treat this as urgent, the sooner the numbers start moving in the right direction. You can rebuild this. Completely. But not by continuing as is."
+    ],
+    fixes:["This week: write down every source of income and every fixed expense — you need the real number","Contact your highest-interest lender and ask about a payment plan or consolidation — one call","Find one thing to cut that frees up $50/month and put it somewhere it can't be touched — start the emergency fund"]
+  }
+];
+
+let current = 0, answers = {}, lastResult = null;
+
+function show(id) { document.querySelectorAll(".screen").forEach(s => s.classList.remove("active")); document.getElementById(id).classList.add("active"); }
+function startQuiz() { current = 0; answers = {}; renderQ(); show("s-quiz"); }
+function restart() { show("s-intro"); }
+
+function renderQ() {
+  const q = Q[current];
+  const pct = Math.round((current / Q.length) * 100);
+  document.getElementById("q-counter").textContent = `Question ${current+1} of ${Q.length}`;
+  document.getElementById("q-pct").textContent = pct + "%";
+  document.getElementById("prog").style.width = pct + "%";
+  document.getElementById("q-label").textContent = q.label;
+  document.getElementById("q-text").textContent = q.text;
+  document.getElementById("q-sub").textContent = q.sub;
+  document.getElementById("options").innerHTML = q.opts.map((o,i) =>
+    `<button class="opt${answers[q.key]===i?" selected":""}" onclick="selectOpt(${i})">${o}</button>`
+  ).join("");
+  const nb = document.getElementById("next-btn");
+  nb.textContent = current === Q.length-1 ? "Get my verdict" : "Continue";
+  nb.classList.toggle("ready", answers[q.key] !== undefined);
+}
+
+function selectOpt(i) {
+  answers[Q[current].key] = i;
+  document.querySelectorAll(".opt").forEach((o,idx) => o.classList.toggle("selected", idx===i));
+  document.getElementById("next-btn").classList.add("ready");
+}
+
+function nextQ() {
+  if (answers[Q[current].key] === undefined) return;
+  if (current < Q.length-1) { current++; renderQ(); } else { calcVerdict(); }
+}
+
+function prevQ() {
+  if (current > 0) { current--; renderQ(); } else { show("s-intro"); }
+}
+
+function calcVerdict() {
+  let total = 0;
+  Q.forEach(q => { total += q.scores[answers[q.key] ?? 0]; });
+
+  const savingsScore = Q[2].scores[answers.savings ?? 0];
+  const debtScore = Q[3].scores[answers.debt ?? 0];
+  const investScore = Q[5].scores[answers.investments ?? 0];
+  const clarityScore = Q[6].scores[answers.clarity ?? 0];
+  const lifestyleScore = Q[4].scores[answers.lifestyle ?? 0];
+
+  const wealthScore = Math.round((total / 28) * 100);
+
+  const savingsLabels = ["~0%","~3%","~10%","~22%","~35%+"];
+  const savingsRate = savingsLabels[answers.savings ?? 0];
+
+  const riskLevel = (debtScore <= 1 || savingsScore === 0) ? "Critical" :
+                    (debtScore === 2 || savingsScore === 1) ? "High" :
+                    (debtScore === 3 || investScore <= 1) ? "Medium" : "Low";
+
+  const v = VERDICTS.find(v => total >= v.min);
+  const headline = v.headlines[Math.floor(Math.random() * v.headlines.length)];
+  const roast = v.roasts[lifestyleScore <= 1 ? 0 : 1];
+
+  lastResult = { verdict: v.verdict, headline, wealthScore, savingsRate, riskLevel, roast, fixes: v.fixes };
+  showResult(lastResult);
+}
+
+function showResult(r) {
+  const v = VERDICTS.find(v => v.verdict === r.verdict);
+  document.getElementById("verdict-badge-wrap").innerHTML =
+    `<div class="verdict-badge" style="background:${v.color.bg};color:${v.color.c}">${r.verdict}</div>`;
+  document.getElementById("verdict-title").textContent = r.headline;
+  document.getElementById("score-row").innerHTML = `
+    <div class="score-card"><div class="score-num">${r.wealthScore}/100</div><div class="score-lbl">Wealth score</div></div>
+    <div class="score-card"><div class="score-num">${r.savingsRate}</div><div class="score-lbl">Savings rate</div></div>
+    <div class="score-card"><div class="score-num">${r.riskLevel}</div><div class="score-lbl">Risk level</div></div>`;
+  document.getElementById("verdict-body").innerHTML = r.roast.split("\n").filter(Boolean).map(p => `<p>${p}</p>`).join("");
+  document.getElementById("fixes-list").innerHTML = r.fixes.map((f,i) =>
+    `<div class="fix-item"><div class="fix-num">0${i+1}</div><div>${f}</div></div>`
+  ).join("");
+  show("s-result");
+}
+
+function copyResult() {
+  if (!lastResult) return;
+  const url = window.location.href;
+  const txt = `I just took the WealthWise quiz and got: "${lastResult.verdict}"\n\n"${lastResult.headline}"\n\nWealth score: ${lastResult.wealthScore}/100  |  Savings: ${lastResult.savingsRate}  |  Risk: ${lastResult.riskLevel}\n\nFind out where you stand 👇\n${url}\n\nFollow @wealthwisefinancestate for more financial truth`;
+  navigator.clipboard.writeText(txt).then(() => {
+    const btn = document.getElementById("copy-btn");
+    btn.textContent = "Copied!";
+    setTimeout(() => { btn.textContent = "Copy & share result"; }, 2500);
+  });
+}
+</script>
+</body>
+</html>
